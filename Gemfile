@@ -12,5 +12,6 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
 end
