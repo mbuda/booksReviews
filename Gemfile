@@ -9,9 +9,13 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
+gem 'bcrypt', '~> 3.1.5'
+gem 'slim'
+gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end

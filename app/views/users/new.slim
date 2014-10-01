@@ -1,0 +1,17 @@
+h1 Sign up
+
+= simple_form_for @user do |f|
+  - if @user.errors.any?
+    .error_msgs
+      h2 Form is invalid
+      ul
+        - @user.errors.full_messages.each do |msg|
+          li= msg
+
+  = f.input :nick, label: 'Nick: '
+  = f.input :password, label: 'Password: '
+  = f.input :password_confirmation, label: 'Password confirmation: '
+
+  .actions
+    = f.submit 'Sign up'
+
