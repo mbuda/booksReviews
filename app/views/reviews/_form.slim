@@ -1,22 +1,21 @@
-form
-  = simple_form_for @review do |f|
-    - if @review.errors.any?
-      .alert.alert-danger
-        h2 Form is invalid
-        ul
-          - @review.errors.full_messages.each do |msg|
-            li= msg
+= simple_form_for @review do |f|
+  - if @review.errors.any?
+    .alert.alert-danger
+      h2 Form is invalid
+      ul
+        - @review.errors.full_messages.each do |msg|
+          li= msg
 
-    .form-group.col-md-7.col-xs-7
-      = f.label :book, class: 'control-label'
-      = f.association :book, class: 'form-control'
-    .form-group.col-md-7.col-xs-7
-      = f.label :title, class: 'control-label'
-      = f.text_field :title, class: 'form-control'
+  .form-group.col-md-7.col-xs-7
+    = f.label :book, class: 'control-label'
+    = f.association :book, class: 'form-control'
+  .form-group.col-md-7.col-xs-7
+    = f.label :title, class: 'control-label'
+    = f.text_field :title, class: 'form-control'
 
-    .form-group.col-md-7.col-xs-7
-      = f.label :description, class: 'control-label'
-      = f.text_area :description, class: 'form-control'
+  .form-group.col-md-7.col-xs-7
+    = f.label :description, class: 'control-label'
+    = f.text_area :description, class: 'form-control'
 
-    .actions.col-md-12.col-xs-12
-      = f.submit 'Save', class: 'btn btn-primary'
+  .actions.col-md-12.col-xs-12
+    = f.submit 'Save', class: 'btn btn-primary'
