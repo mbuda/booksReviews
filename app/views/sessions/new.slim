@@ -1,13 +1,15 @@
-h1 Log in
+.content
+  .content-header.col-md-12.col-xs-12
+    h1 Log in
 
-= form_tag sessions_path do
-  .field
-    = label_tag :nick
-    = text_field_tag :nick, params[:nick]
-  .field
-    = label_tag :password
-    = password_field_tag :password
+  = form_tag sessions_path do
+    .form-group.col-md-7.col-xs-7
+      = label_tag :nick, class: 'control-label'
+      = text_field_tag :nick, params[:nick], class: 'form-control'
+    .form-group.col-md-7.col-xs-7
+      = label_tag :password, class: 'control-label'
+      = password_field_tag :password, class: 'form-control'
 
-  .actions
-    = submit_tag 'Log in'
+    .actions
+      = submit_tag 'Log in', class: 'btn btn-primary'
 
