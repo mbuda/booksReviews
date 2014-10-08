@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
   def create
     @review = @book.reviews.new(review_params)
     if @review.save
-      redirect_to [@book, @review], notice: 'Saved review'
+      redirect_to root_url, notice: 'Saved review'
     else
       render action: 'new'
     end
