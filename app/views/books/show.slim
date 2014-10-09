@@ -1,0 +1,16 @@
+.content-header
+  h1 Book info
+
+.row
+  dl.span4.well.well-lg
+    dt Title:
+    dd= @book.title
+    dt Author
+    dd= @book.author
+
+  =link_to 'Edit', edit_book_path(@book)
+
+  .span.well
+    h3 Reviews:
+    - @book.reviews.each do |review|
+      =link_to review.title, book_review_path(@book)
