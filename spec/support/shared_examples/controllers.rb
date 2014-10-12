@@ -15,3 +15,25 @@ shared_examples_for "GET #index" do
     expect(assigns(subject)).to eq([resource])
   end
 end
+
+shared_examples_for "GET #show" do
+  before do
+    get :show, id: resource
+  end
+
+  it "assigns the requested resource to @resource" do
+    expect(assigns(subject)).to eq(resource)
+  end
+
+  it "renders the #show view" do
+    expect(assigns(subject)).to eq(resource)
+  end
+end
+
+shared_examples_for "GET #new" do
+  it "renders the #new view" do
+    get :new
+    expect(response).to render_template("new")
+  end
+end
+
