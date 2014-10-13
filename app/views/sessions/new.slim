@@ -4,11 +4,11 @@
 
   = form_tag sessions_path do
     .form-group.col-md-7.col-xs-7
-      = label_tag :nick, class: 'control-label'
-      = text_field_tag :nick, params[:nick], class: 'form-control'
+      = label_tag :nick
+      = text_field_tag :nick, params[:nick]
     .form-group.col-md-7.col-xs-7
-      = label_tag :password, class: 'control-label'
-      = password_field_tag :password, class: 'form-control'
+      = label_tag :password
+      = password_field_tag :password
 
     .actions
       = submit_tag 'Log in', class: 'btn btn-primary'
