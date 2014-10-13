@@ -7,7 +7,7 @@ html
     = csrf_meta_tags
   body
     - if current_user
-      Logged in as:
+      p Logged in as:
       = current_user.nick
       br
       = link_to 'Log out', logout_path
@@ -19,4 +19,4 @@ html
     == yield
 
     #footer
-      Made by Marta Buda
+      p Made by Marta Buda
