@@ -6,17 +6,20 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    - if current_user
-      p Logged in as:
-      = current_user.nick
-      br
-      = link_to 'Log out', logout_path
-    - else
-      = link_to 'Sign up', signup_path
-      br
-      = link_to 'Log in', login_path
+    .wrapper
+      .header
+        - if current_user
+          p Logged in as:
+          = current_user.nick
+          br
+          = link_to 'Log out', logout_path
+        - else
+          = link_to 'Sign up', signup_path
+          br
+          = link_to 'Log in', login_path
 
-    == yield
+      .main-content
+        == yield
 
-    #footer
-      p Made by Marta Buda
+      #footer
+        p Made by Marta Buda
