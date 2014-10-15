@@ -5,6 +5,10 @@ class ReviewsController < ApplicationController
     @reviews = Review.all
   end
 
+  def show
+    @review = @book.reviews.find(params[:id])
+  end
+
   def new
     @review = @book.reviews.build
   end

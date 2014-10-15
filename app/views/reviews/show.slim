@@ -1,0 +1,24 @@
+.content-header
+  h1 Review info
+
+.row
+  dl.well.well-lg
+    dt Date added:
+    dd= @review.created_at
+    dt Title:
+    dd= @review.title
+    dt Reviewer:
+    dd= @review.user
+    dt Text:
+    dd= @review.description
+
+  =link_to 'Edit', edit_book_review_path(@book, @review)
+
+  .well
+    h3 Comments:
+    - @review.comments.each do |comment|
+      =comment.text
+      =comment.user
+      =comment.created_at
+
+
