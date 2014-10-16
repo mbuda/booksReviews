@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :comments, only: [:create]
 
   root 'reviews#index'
 end

@@ -13,4 +13,4 @@
   .span.well
     h3 Reviews:
     - @book.reviews.each do |review|
-      =link_to review.title, book_review_path(@book)
+      =link_to review.title, book_review_path(@book, review)

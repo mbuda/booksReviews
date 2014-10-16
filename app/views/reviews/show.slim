@@ -17,8 +17,14 @@
   .well
     h3 Comments:
     - @review.comments.each do |comment|
-      =comment.text
-      =comment.user
-      =comment.created_at
+      p=comment.text
+      p=comment.user
+      p=comment.created_at
 
-
+  .well
+    h3 Add comment:
+    = simple_form_for @comment do |f|
+      =f.hidden_field :review_id, value: @review.id
+      =f.hidden_field :book_id, value: @review.book_id
+      =f.input :text
+      =f.button :submit
