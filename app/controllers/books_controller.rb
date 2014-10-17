@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_filter :authorize, only: [:new, :create]
 
   def index
     @books = Book.all

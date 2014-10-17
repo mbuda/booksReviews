@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :book, except: [:index]
+  before_filter :authorize, only: [:new, :create]
 
   def index
     @reviews = Review.all
