@@ -37,3 +37,17 @@ shared_examples_for "GET #new" do
   end
 end
 
+shared_examples_for "GET #edit" do
+  before do
+    get :edit, id: resource
+  end
+
+  it "assigns the requested resource to @resource" do
+    expect(assigns(subject)).to eq(resource)
+  end
+
+  it "renders the #edit view" do
+    expect(response).to render_template("edit")
+  end
+end
+
