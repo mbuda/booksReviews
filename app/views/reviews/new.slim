@@ -3,4 +3,5 @@
     h1 Add new review
 
   .col-md-10.col-xs-12
-    = render 'form'
+    = simple_form_for @review, url: new_book_review_path(@book), html: { method: :post } do |f|
+      = render 'form', f: f

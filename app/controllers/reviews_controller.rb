@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
   before_action :book, except: [:index]
-  before_filter :authorize, only: [:new, :create]
+  before_action :set_review, only: [:show, :edit, :update]
+  before_filter :authorize, except: [:index, :show]
 
   def index
     @reviews = Review.all
   end
 
   def show
-    @review = @book.reviews.find(params[:id])
     @comment = Comment.new
   end
 
@@ -24,6 +24,17 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @review.update(review_params)
+      redirect_to @book, notice: 'Review updated'
+    else
+      render action: 'edit'
+    end
+  end
+
   private
   def review_params
       params.require(:review).permit(:title, :description)
@@ -31,5 +42,9 @@ class ReviewsController < ApplicationController
 
   def book
     @book = Book.find(params[:book_id])
+  end
+
+  def set_review
+    @review = @book.reviews.find(params[:id])
   end
 end
