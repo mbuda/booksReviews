@@ -51,3 +51,17 @@ shared_examples_for "GET #edit" do
   end
 end
 
+shared_examples_for "DELETE #destroy" do
+  before do
+    @resource = resource
+  end
+
+  it "deletes the resource" do
+    expect{ delete :destroy, id: @resource }.to change(resource.class, :count).by(-1)
+  end
+
+  it "redirects to resources#index" do
+    delete :destroy, id: @resource
+    expect(response).to redirect_to(action: :index)
+  end
+end

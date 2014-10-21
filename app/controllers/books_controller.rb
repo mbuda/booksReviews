@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update]
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_filter :authorize, only: [:new, :create]
 
   def index
@@ -31,6 +31,11 @@ class BooksController < ApplicationController
     else
       render action: 'edit'
     end
+  end
+
+  def destroy
+    @book.destroy
+    redirect_to books_url, notice: 'Book destroyed'
   end
 
   private
