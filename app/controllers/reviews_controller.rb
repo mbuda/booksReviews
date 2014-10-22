@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :book, except: [:index]
-  before_action :set_review, only: [:show, :edit, :update]
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_filter :authorize, except: [:index, :show]
 
   def index
@@ -33,6 +33,11 @@ class ReviewsController < ApplicationController
     else
       render action: 'edit'
     end
+  end
+
+  def destroy
+    @review.destroy
+    redirect_to reviews_url, notice: 'Review deleted'
   end
 
   private

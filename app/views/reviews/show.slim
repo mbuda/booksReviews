@@ -13,6 +13,7 @@
     dd= @review.description
 
   =link_to 'Edit', edit_book_review_path(@book, @review)
+  =link_to 'Destroy', @review, method: :delete
 
   .well
     h3 Comments:
