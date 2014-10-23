@@ -8,7 +8,7 @@
     dt Title:
     dd= @review.title
     dt Reviewer:
-    dd= @review.user
+    dd= @review.user.nick
     dt Text:
     dd= @review.description
 
@@ -20,7 +20,7 @@
     h3 Comments:
     - @review.comments.each do |comment|
       p=comment.text
-      p=comment.user
+      p=comment.user.nick
       p=comment.created_at
 
   .well
