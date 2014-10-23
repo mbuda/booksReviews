@@ -12,9 +12,11 @@
     dt Text:
     dd= @review.description
 
-  =link_to 'Edit', edit_book_review_path(@book, @review)
+  =link_to 'Edit', edit_book_review_path(@book, @review),
+    class: 'btn btn-info'
   =link_to 'Destroy', book_review_path(@book, @review),
-    method: :delete, data: { confirm: 'Are you sure?' }
+    method: :delete, data: { confirm: 'Are you sure?' },
+    class: 'btn btn-danger'
 
   .well
     h3 Comments:
