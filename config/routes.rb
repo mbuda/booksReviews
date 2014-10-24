@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   resources :sessions
   resources :comments, only: [:create]
 
-  root 'reviews#index'
+  root 'books#index'
 end
