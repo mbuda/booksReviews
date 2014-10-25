@@ -12,11 +12,12 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = @book.reviews.build
+    @review = @book.reviews.build(params[:review])
   end
 
   def create
     @review = @book.reviews.new(review_params)
+    @review.user_id = current_user.id
     if @review.save
       redirect_to root_url, notice: 'Saved review'
     else
@@ -28,10 +29,14 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if @review.update(review_params)
-      redirect_to @book, notice: 'Review updated'
+    if current_user.id == @review.user_id
+      if @review.update(review_params)
+        redirect_to @book, notice: 'Review updated'
+      else
+        render action: 'edit'
+      end
     else
-      render action: 'edit'
+      redirect_to @book, notice: 'This review don\'t belong to you'
     end
   end
 
