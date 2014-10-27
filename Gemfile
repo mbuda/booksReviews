@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
