@@ -18,6 +18,7 @@ gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-activemodel-mocks'
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'

@@ -32,6 +32,7 @@ end
 
 shared_examples_for "GET #new" do
   it "renders the #new view" do
+    sign_in
     get :new
     expect(response).to render_template("new")
   end
