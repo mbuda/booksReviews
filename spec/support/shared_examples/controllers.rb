@@ -40,6 +40,7 @@ end
 
 shared_examples_for "GET #edit" do
   before do
+    sign_in
     get :edit, id: resource
   end
 
@@ -54,6 +55,7 @@ end
 
 shared_examples_for "DELETE #destroy" do
   before do
+    sign_in
     @resource = resource
   end
 
