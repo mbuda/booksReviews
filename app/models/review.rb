@@ -1,7 +1,7 @@
 class Review < ActiveRecord::Base
   belongs_to :book
   belongs_to :user
-  has_many :comments
+  has_many :comments, depend: :destroy
 
   validates :title, presence: true
   validates :description, presence: true, uniqueness: true
