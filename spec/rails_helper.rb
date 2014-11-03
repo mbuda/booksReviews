@@ -13,7 +13,7 @@ ActiveRecord::Migration.maintain_test_schema!
 SimpleCov.start
 
 def sign_in
-  ApplicationController.any_instance.stub(:current_user).and_return(stub_model(User))
+  allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(stub_model(User))
 end
 
 RSpec.configure do |config|
