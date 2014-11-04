@@ -22,6 +22,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.order = 'random'
   config.include FactoryGirl::Syntax::Methods
+  config.include Capybara::DSL
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
