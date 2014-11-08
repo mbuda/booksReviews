@@ -5,7 +5,7 @@
   dl.well.well-lg
     dt Title:
     dd= @book.title
-    dt Author
+    dt Author:
     dd= @book.author
 
   = link_to edit_book_path(@book), class: 'btn btn-info' do
@@ -15,9 +15,13 @@
 
   .well
     h3 Reviews:
-    - @book.reviews.each do |review|
-      = link_to review.title, book_review_path(@book, review)
-      br
+    - if @book.reviews == nil
+      h5 There is no reviews :(
+    - else
+      ul
+        - @book.reviews.each do |review|
+          li= link_to review.title, book_review_path(@book, review)
+          br
 
   = link_to new_book_review_path(@book), class: 'btn btn-primary' do
     i.fa.fa-plus
