@@ -13,6 +13,6 @@
       - @reviews.each do |review|
         tr
           td=review.created_at
-          td=review.title
+          td=link_to review.title, book_review_path(review.book, review)
           td=review.book.title
           td=review.user.nick

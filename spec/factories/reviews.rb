@@ -4,12 +4,12 @@ FactoryGirl.define do
     description 'Everything is awesome'
   end
 
-  factory :another_review do
+  factory :another_review, class: Review do
     title 'Love in the air'
     description 'So sweet'
   end
 
-  factory :invalid_review do
+  factory :invalid_review, class: Review do
     title nil
     description nil
   end
