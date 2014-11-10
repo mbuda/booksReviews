@@ -38,6 +38,33 @@ shared_examples_for "GET #new" do
   end
 end
 
+shared_examples_for "POST #create" do
+  before do
+    sign_in
+  end
+
+  context "with valid attributes" do
+    it "creates a new resource" do
+      expect{ post :create, subject => other_resource }.to change(resource.class, :count).by(1)
+    end
+
+    it "redirects to the resource index" do
+      post :create, subject => other_resource
+      expect(response).to redirect_to redirect_to(action: :index)
+    end
+  end
+
+  context "with invalid attributes" do
+    it "does not save the new resource" do
+      expect{ post :create, subject => invalid_resource }.to_not change(resource.class, :count)
+    end
+
+    it "re-renders the new method" do
+      post :create, subject => invalid_resource
+      expect(response).to render_template :new
+    end
+  end
+end
 shared_examples_for "GET #edit" do
   before do
     sign_in
