@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'users/new' do
   subject { page }
   let(:user) { build(:user) }
+
   before do
     visit new_user_path
   end

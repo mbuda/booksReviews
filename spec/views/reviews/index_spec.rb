@@ -7,6 +7,7 @@ describe 'reviews/index' do
   let!(:user) { create(:user) }
   let!(:review1) { create(:review, book: book1, user: user) }
   let!(:review2) { create(:another_review, book: book2, user: user) }
+
   before do
     visit reviews_path
   end

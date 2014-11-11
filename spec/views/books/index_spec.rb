@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe 'books/index' do
-  subject {page }
+  subject { page }
   let!(:book) { create(:book) }
+
   before do
     visit books_path
   end
@@ -47,6 +48,3 @@ describe 'books/index' do
     expect(page).to have_link('Add new book')
   end
 end
-
-
-

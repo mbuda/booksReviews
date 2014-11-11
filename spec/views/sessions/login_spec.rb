@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'sessions/new' do
   subject { page }
+
   before { visit login_path }
 
   it 'contains field for nickname' do

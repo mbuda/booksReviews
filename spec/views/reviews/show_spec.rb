@@ -5,6 +5,7 @@ describe 'reviews/show' do
   let!(:book) { create(:book) }
   let!(:user) { create(:user) }
   let(:review) { create(:review, book: book, user: user) }
+
   before do
     visit book_review_path(book, review)
   end

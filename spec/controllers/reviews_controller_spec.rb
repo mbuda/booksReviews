@@ -13,6 +13,7 @@ describe ReviewsController do
   describe 'GET #show' do
     it 'renders the template' do
       get :show, { book_id: book, id: resource }
+
       expect(response).to render_template :show
     end
   end
@@ -21,6 +22,7 @@ describe ReviewsController do
     it 'renders the #new view' do
       sign_in
       get :new, { book_id: book }
+
       expect(response).to render_template('new')
     end
   end

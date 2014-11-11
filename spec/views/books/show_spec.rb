@@ -4,6 +4,7 @@ describe 'books/show' do
   subject { page }
   let(:book) { create(:book) }
   let!(:review) { create(:review, book: book) }
+
   before do
     visit book_path(book)
   end
