@@ -13,6 +13,10 @@ describe 'books/new' do
       'h1', text: 'Add new book')
   end
 
+  it 'render form partial' do
+    expect(response).to render_template(:partial => '_form')
+  end
+
   describe 'form' do
     it 'have title label' do
       expect(page).to have_selector(
@@ -31,6 +35,5 @@ describe 'books/new' do
     it 'have author field' do
       expect(page).to have_field('Author')
     end
-
   end
 end

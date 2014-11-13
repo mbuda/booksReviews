@@ -15,7 +15,7 @@ describe 'books/edit' do
   end
 
   it 'render form partial' do
-    response.should render_template(:partial => "_form")
+    expect(response).to render_template(:partial => "_form")
   end
 
   describe 'form' do
