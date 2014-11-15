@@ -4,7 +4,8 @@ describe 'reviews/show' do
   subject { page }
   let!(:book) { create(:book) }
   let!(:user) { create(:user) }
-  let(:review) { create(:review, book: book, user: user) }
+  let!(:review) { create(:review, book: book, user: user) }
+  let!(:comment) { create(:comment, review: review, user: user) }
 
   before do
     visit book_review_path(book, review)
@@ -48,5 +49,31 @@ describe 'reviews/show' do
   it 'displays review text' do
     expect(page).to have_selector(
       'dd', text: 'Everything is awesome')
+  end
+
+  describe 'comments\' section' do
+    it 'has headline for comments\' list' do
+      expect(page).to have_selector(
+        'h3', text: 'Comments:')
+    end
+
+    it 'displays comment\'s text' do
+      expect(page).to have_selector(
+        'p', text: 'I totally disagree')
+    end
+
+    it 'displays who wrote the comment' do
+      expect(page).to have_selector(
+        'p', text: 'Johny')
+    end
+
+    it 'has headline for adding comment' do
+      expect(page).to have_selector(
+        'h3', text: 'Add comment:')
+    end
+
+    it 'has field for comment text' do
+      expect(page).to have_field('Text')
+    end
   end
 end
