@@ -37,5 +37,21 @@ describe ReviewsController do
       expect(response).to render_template('edit')
     end
   end
+
+  context 'user is not signed in' do
+    describe 'POST #create' do
+      it 'redirects user to login page' do
+        post :create, { book_id: book, review: { 'title' => 'Another', 'description' => 'blablabla' } }
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    describe 'PUT #update' do
+      it 'redirects user to login page' do
+        put :update, { book_id: book, id: resource, review: { 'title' => 'Boobly', 'description' => 'uguu' } }
+        expect(response).to redirect_to(login_path)
+      end
+    end
+  end
 end
 
