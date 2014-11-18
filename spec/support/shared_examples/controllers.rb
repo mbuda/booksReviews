@@ -31,11 +31,20 @@ shared_examples_for 'GET #show' do
 end
 
 shared_examples_for 'GET #new' do
-  it 'renders the #new view' do
-    sign_in
-    get :new
+  context 'user is signed in' do
+    it 'renders the #new view' do
+      sign_in
+      get :new
 
-    expect(response).to render_template('new')
+      expect(response).to render_template('new')
+    end
+  end
+
+  context 'user is not signed in' do
+    it 'redirects user to login page' do
+      get :new
+      expect(response).to redirect_to(login_path)
+    end
   end
 end
 
@@ -85,65 +94,92 @@ shared_examples_for 'GET #edit' do
 end
 
 shared_examples_for 'PUT #update' do
-  before do
-    sign_in
-    @resource = resource
+  context 'user is signed in' do
+    before do
+      sign_in
+      @resource = resource
+    end
+
+    context 'valid attributes' do
+      before do
+        put :update, id: @resource, subject => other_resource
+      end
+
+      it 'located the requested @resource' do
+        expect(assigns(subject)).to eq(@resource)
+      end
+
+      it 'changes @resource\'s attributes' do
+        @resource.reload
+
+        other_resource.keys.each { |k| expect(@resource.send(k)).to eq(other_resource[k]) }
+      end
+
+      it 'redirects to the updated resource' do
+        expect(response).to redirect_to @resource
+      end
+    end
+
+    context 'invalid attributes' do
+      before do
+        put :update, id: @resource, subject => invalid_resource
+      end
+
+      it 'locates the requested @resource' do
+        expect(assigns(subject)).to eq(@resource)
+      end
+
+      it 'does not change @resource\'s attributes' do
+        @resource.reload
+
+        other_resource.keys.each { |k| expect(@resource.send(k)).not_to eq(invalid_resource[k]) }
+      end
+
+      it 're-renders the edit method' do
+        expect(response).to render_template :edit
+      end
+    end
   end
 
-  context 'valid attributes' do
+  context 'user is not signed in' do
     before do
+      @resource = resource
+    end
+
+    it 'redirects user to login path' do
       put :update, id: @resource, subject => other_resource
-    end
-
-    it 'located the requested @resource' do
-      expect(assigns(subject)).to eq(@resource)
-    end
-
-    it 'changes @resource\'s attributes' do
-      @resource.reload
-
-      other_resource.keys.each { |k| expect(@resource.send(k)).to eq(other_resource[k]) }
-    end
-
-    it 'redirects to the updated resource' do
-      expect(response).to redirect_to @resource
-    end
-  end
-
-  context 'invalid attributes' do
-    before do
-      put :update, id: @resource, subject => invalid_resource
-    end
-
-    it 'locates the requested @resource' do
-      expect(assigns(subject)).to eq(@resource)
-    end
-
-    it 'does not change @resource\'s attributes' do
-      @resource.reload
-
-      other_resource.keys.each { |k| expect(@resource.send(k)).not_to eq(invalid_resource[k]) }
-    end
-
-    it 're-renders the edit method' do
-      expect(response).to render_template :edit
+      expect(response).to redirect_to(login_path)
     end
   end
 end
 
 shared_examples_for 'DELETE #destroy' do
-  before do
-    sign_in
-    @resource = resource
+  context 'user is signed in' do
+    before do
+      sign_in
+      @resource = resource
+    end
+
+    it 'deletes the resource' do
+      expect{ delete :destroy, id: @resource }.to change(resource.class, :count).by(-1)
+    end
+
+    it 'redirects to resources#index' do
+      delete :destroy, id: @resource
+
+      expect(response).to redirect_to(action: :index)
+    end
   end
 
-  it 'deletes the resource' do
-    expect{ delete :destroy, id: @resource }.to change(resource.class, :count).by(-1)
-  end
+  context 'user is not signed in' do
+    before do
+      @resource = resource
+    end
 
-  it 'redirects to resources#index' do
-    delete :destroy, id: @resource
+    it 'redirects user to login page' do
+      delete :destroy, id: @resource
 
-    expect(response).to redirect_to(action: :index)
+      expect(response).to redirect_to(login_path)
+    end
   end
 end
