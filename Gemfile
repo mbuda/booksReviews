@@ -15,7 +15,7 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
-gem 'googlebooks'
+gem 'goodreads'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
